@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {deposit, withdraw} from "../actions/accountActions.js";
 import {useDispatch} from "react-redux";
+import {fetchQuote} from "../actions/quoteAction.js";
 
 const Operation = () => {
     const [sum, setSum] = useState(0);
@@ -13,6 +14,10 @@ const Operation = () => {
                    onChange={e => setSum(+e.target.value)}
                    value={sum}/>
             <button onClick={() => dispatch(deposit(sum))}>Deposit</button>
+            <div>
+                <button onClick={() => dispatch(fetchQuote())}>Get Quote</button>
+            </div>
+
         </div>
     );
 };
