@@ -1,12 +1,18 @@
-import {accountReducer} from "../reducer/accountReducer.js";
-import {applyMiddleware, legacy_createStore as createStore} from "redux";
-import {thunk} from "redux-thunk";
-import {logger} from "redux-logger/src";
+import { accountReducer } from "../reducer/accountReducer.js";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
+import { thunk } from "redux-thunk";
+import { logger } from "redux-logger/src";
 
+// Начальное состояние стора
 const initialStore = {
-    balance: 0,
-    quote: "Winter is coming..."
+    balance: 0,                     // стартовый баланс
+    quote: "Winter is coming..."    // стартовая цитата
 };
 
-export const store = createStore(accountReducer, initialStore,
-    applyMiddleware(thunk, logger));
+// Создаём Redux store
+// applyMiddleware подключает thunk (для async actions) и logger (для дебага)
+export const store = createStore(
+    accountReducer,    // редьюсер, управляющий состоянием
+    initialStore,      // начальное состояние
+    applyMiddleware(thunk, logger) // подключаем middleware
+);
